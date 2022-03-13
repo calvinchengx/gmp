@@ -66,6 +66,7 @@ jobs:
           TARGET=${{ matrix.triple.target }}
           case $TARGET in
             "aarch64-linux-android" | "armv7-linux-androideabi" | "i686-linux-android" | "x86_64-linux-android")
+              cd build
               ./linux-build.sh $TARGET
               cd $HOME/usr/local
               zip -r $TARGET.zip $TARGET
