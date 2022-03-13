@@ -6,7 +6,9 @@ mkdir -p gmp
 cd gmp
 CURRENT=`pwd`
 
+echo "ANDROID_SDK_ROOT: $ANDROID_SDK_ROOT"
 export NDK=$ANDROID_SDK_ROOT/ndk-bundle
+echo "NDK: $NDK"
 
 # Only choose one of these, depending on your build machine...
 # export TOOLCHAIN=$NDK/toolchains/llvm/prebuilt/darwin-x86_64
