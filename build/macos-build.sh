@@ -89,4 +89,4 @@ build()
 	make install &> "${CURRENT}/gmplib-${ARCH}-${TYPE}-install.log"
 }
 
-build
+build $1
