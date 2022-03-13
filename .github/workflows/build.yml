@@ -53,6 +53,7 @@ jobs:
           case $OS in 
             "ubuntu-latest")
               ./android-linux-setup.sh
+              ;;
             *)
               ;;
           esac
