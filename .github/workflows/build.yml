@@ -10,34 +10,34 @@ jobs:
     strategy:
       matrix:
         triple:
-          # # aarch64 android
-          # - {
-          #     os: ubuntu-latest,
-          #     target: aarch64-linux-android,
-          #     cross: true,
-          #     artifact_name: aarch64-linux-android.zip
-          #   }
-          # # armv7a android
-          # - {
-          #     os: ubuntu-latest,
-          #     target: armv7a-linux-androideabi,
-          #     cross: true,
-          #     artifact_name: armv7a-linux-androideabi.zip
-          #   }
-          # # i686 android
-          # - {
-          #     os: ubuntu-latest,
-          #     target: i686-linux-android,
-          #     cross: true,
-          #     artifact_name: i686-linux-android.zip
-          #   }
-          # # x86_64 android
-          # - {
-          #     os: ubuntu-latest,
-          #     target: x86_64-linux-android,
-          #     cross: true,
-          #     artifact_name: x86_64-linux-android.zip
-          #   }
+          # aarch64 android
+          - {
+              os: ubuntu-latest,
+              target: aarch64-linux-android,
+              cross: true,
+              artifact_name: aarch64-linux-android.zip
+            }
+          # armv7a android
+          - {
+              os: ubuntu-latest,
+              target: armv7a-linux-androideabi,
+              cross: true,
+              artifact_name: armv7a-linux-androideabi.zip
+            }
+          # i686 android
+          - {
+              os: ubuntu-latest,
+              target: i686-linux-android,
+              cross: true,
+              artifact_name: i686-linux-android.zip
+            }
+          # x86_64 android
+          - {
+              os: ubuntu-latest,
+              target: x86_64-linux-android,
+              cross: true,
+              artifact_name: x86_64-linux-android.zip
+            }
           # arm64 ios
           - {
               os: macos-latest,
