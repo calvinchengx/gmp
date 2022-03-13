@@ -90,6 +90,7 @@ jobs:
               cd build
               ./macos-build.sh $TARGET
               cd gmp
+              ls -la .
               zip -r /tmp/${{ matrix.triple.artifact_name }} gmplib-$TARGET
               ;;
           esac
