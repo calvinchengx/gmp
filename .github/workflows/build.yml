@@ -74,7 +74,7 @@ jobs:
             *)
               ;;
           esac
-          ls -la usr/local
+          ls -la $HOME/usr/local
       - name: Upload binary to release
         uses: svenstaro/upload-release-action@v1-release
         with:
