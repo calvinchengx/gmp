@@ -55,7 +55,7 @@ jobs:
               ./android-linux-setup.sh
               cd build
               ./download.sh
-              ./linux-build.sh
+              ./linux-build.sh $TARGET
               cd $HOME/usr/local
               zip -r $TARGET.zip $TARGET
               ;;

@@ -15,6 +15,7 @@ echo "NDK: $NDK"
 export TOOLCHAIN=$NDK/toolchains/llvm/prebuilt/linux-x86_64
 
 # Only choose one of these, depending on your device...
+export TARGET=$1
 # export TARGET=aarch64-linux-android
 # export TARGET=armv7a-linux-androideabi
 # export TARGET=i686-linux-android
