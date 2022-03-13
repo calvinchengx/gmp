@@ -31,37 +31,52 @@ jobs:
               cross: true,
               artifact_name: i686-linux-android.zip
             }
-          # x86_64-linux-android
+          # x86_64 android
           - {
               os: ubuntu-latest,
               target: x86_64-linux-android,
               cross: true,
               artifact_name: x86_64-linux-android.zip
-            }        
+            }
+          # arm64 ios
+          - {
+              os: macos-latest,
+              target: arm64-ios,
+              artifact_name: arm64-ios.zip
+            }
+          # x86_64 ios
+          - {
+              os: macos-latest,
+              target: x86_64-ios,
+              artifact_name: x86_64-ios.zip
+            }
+          # x86_64 macos
+          - {
+              os: macos-latest,
+              target: x86_64-macos,
+              artifact_name: x86_64-macos.zip
+            }
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
       - name: Set up Java
         uses: actions/setup-java@v2
+        if: matrix.triple.os == 'ubuntu-latest'
         with:
-          distribution: 'zulu' # See 'Supported distributions' for available options
+          distribution: 'zulu'
           java-version: '11'
       - name: Set up Android
-        run: |
-          OS=${{ matrix.triple.os }}
-          case $OS in 
-            "ubuntu-latest")
-              ./android-linux-setup.sh
-              ;;
-            *)
-              ;;
-          esac
+        if: matrix.triple.os == 'ubuntu-latest'
+        run: ./android-linux-setup.sh
+      - name: Set up Xcode
+        if: matrix.triple.os == 'macos-latest'
+        uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: '13.0'
       - name: Download gmp
-        run: |
-          cd build
-          ./download.sh
-      - name: Build project
+        run: cd build && ./download.sh
+      - name: Build
         run: |
           TARGET=${{ matrix.triple.target }}
           case $TARGET in
@@ -72,11 +87,14 @@ jobs:
               zip -r /tmp/${{ matrix.triple.artifact_name }} $TARGET
               ;;
             *)
+              cd build
+              ./macos-build.sh $TARGET
+              zip -r /tmp/${{ matrix.triple.artifact_name }} $TARGET
               ;;
           esac
-          ls -la $HOME
       - name: Upload binary to release
         uses: svenstaro/upload-release-action@v1-release
+        if: matrix.triple.os == 'ubuntu-latest' # temporary
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: /tmp/${{ matrix.triple.artifact_name }}
