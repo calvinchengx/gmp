@@ -89,7 +89,7 @@ jobs:
             *)
               cd build
               ./macos-build.sh $TARGET
-              ls -la gmplib*
+              ls -la .
               ;;
           esac
       - name: Upload binary to release
