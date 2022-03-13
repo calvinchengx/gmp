@@ -90,11 +90,11 @@ jobs:
               cd build
               ./macos-build.sh $TARGET
               ls -la gmp
+              zip -r /tmp/${{ matrix.triple.artifact_name }} gmplib-$TARGET
               ;;
           esac
       - name: Upload binary to release
         uses: svenstaro/upload-release-action@v1-release
-        if: matrix.triple.os == 'ubuntu-latest' # temporary
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: /tmp/${{ matrix.triple.artifact_name }}
