@@ -50,10 +50,12 @@ jobs:
       - name: Set up Android
         run: |
           OS=${{ matrix.triple.os }}
-          case $OS in "ubuntu-latest")
-            ./android-linux-setup.sh
-          *)
-            ;;
+          case $OS in 
+            "ubuntu-latest")
+              ./android-linux-setup.sh
+            *)
+              ;;
+          esac
       - name: Download gmp
         run: |
           cd build
