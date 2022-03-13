@@ -29,5 +29,8 @@ echo "ANDROID_HOME: $ANDROID_HOME"
 echo "ANDROID_SDK_ROOT: $ANDROID_SDK_ROOT"
 echo "PATH: $PATH"
 
-yes | ./$ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager --licenses
-./$ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager "platforms;android-21" "build-tools;21.1.2" "ndk-bundle"
+ls -la $ANDROID_SDK_ROOT/cmdline-tools
+ls -la $ANDROID_SDK_ROOT/cmdline-tools/latest
+ls -la $ANDROID_SDK_ROOT/cmdline-tools/latest/bin
+yes | .$ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager --licenses
+.$ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager "platforms;android-21" "build-tools;21.1.2" "ndk-bundle"
