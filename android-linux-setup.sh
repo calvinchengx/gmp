@@ -7,7 +7,7 @@ sudo apt-get install libc6-dev-i386 lib32z1 openjdk-8-jdk build-essential --yes
 wget https://dl.google.com/android/repository/commandlinetools-linux-8092744_latest.zip
 unzip commandlinetools-linux-8092744_latest.zip
 
-export ANDROID_HOME=$HOME/Android
+export ANDROID_HOME=/usr/local/lib/android
 export ANDROID_SDK_ROOT=$ANDROID_HOME/sdk
 
 mkdir -p $ANDROID_SDK_ROOT
@@ -18,7 +18,7 @@ rm -rf cmdline-tools
 
 cat << EOF >> $HOME/.bashrc
 
-export ANDROID_HOME=$HOME/Android
+export ANDROID_HOME=/usr/local/lib/android
 export ANDROID_SDK_ROOT=\$ANDROID_HOME/sdk
 export PATH=\$PATH:\$ANDROID_SDK_ROOT/cmdline-tools/latest/bin
 EOF
