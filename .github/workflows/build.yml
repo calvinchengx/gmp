@@ -79,7 +79,7 @@ jobs:
         uses: svenstaro/upload-release-action@v1-release
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: usr/local/${{ matrix.triple.artifact_name }}
+          file: $HOME/usr/local/${{ matrix.triple.artifact_name }}
           asset_name: ${{ matrix.triple.artifact_name }}
-          # tag: ${{ github.event.client_payload.new_version }}
+          tag: 6.2.1
           overwrite: true
