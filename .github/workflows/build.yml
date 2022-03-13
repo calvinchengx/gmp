@@ -1,0 +1,68 @@
+name: Build and upload binaries to release
+
+on:
+  push:
+
+jobs:
+  release:
+    name: Build and Release
+    runs-on: ${{ matrix.triple.os }}
+    strategy:
+      matrix:
+        triple:
+          # aarch64 android
+          - {
+              os: ubuntu-latest,
+              target: aarch64-linux-android,
+              cross: true,
+              artifact_name: aarch64-linux-android.zip
+            }
+          # armv7 android
+          - {
+              os: ubuntu-latest,
+              target: armv7-linux-androideabi,
+              cross: true,
+              artifact_name: armv7-linux-androideabi.zip
+            }
+          # i686 android
+          - {
+              os: ubuntu-latest,
+              target: i686-linux-android,
+              cross: true,
+              artifact_name: i686-linux-android.zip
+            }
+          # x86_64-linux-android
+          - {
+              os: ubuntu-latest,
+              target: x86_64-linux-android,
+              cross: true,
+              artifact_name: x86_64-linux-android.zip
+            }        
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Build project
+        run: |
+          TARGET=${{ matrix.triple.target }}
+          case $TARGET in
+            "aarch64-linux-android" | "armv7-linux-androideabi" | "i686-linux-android" | "x86_64-linux-android")
+              ./android-linux-setup.sh
+              cd build
+              ./download.sh
+              ./linux-build.sh
+              cd usr/local
+              zip -r $TARGET.zip $TARGET
+              ;;
+            *)
+              ;;
+          esac
+          ls -la usr/local
+      - name: Upload binary to release
+        uses: svenstaro/upload-release-action@v1-release
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: usr/local/${{ matrix.triple.artifact_name }}
+          asset_name: ${{ matrix.triple.artifact_name }}
+          # tag: ${{ github.event.client_payload.new_version }}
+          overwrite: true
