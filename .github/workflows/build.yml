@@ -47,14 +47,22 @@ jobs:
         with:
           distribution: 'zulu' # See 'Supported distributions' for available options
           java-version: '11'
+      - name: Set up Android
+        run: |
+          OS=${{ matrix.triple.os }}
+          case $OS in "ubuntu-latest")
+            ./android-linux-setup.sh
+          *)
+            ;;
+      - name: Download gmp
+        run: |
+          cd build
+          ./download.sh
       - name: Build project
         run: |
           TARGET=${{ matrix.triple.target }}
           case $TARGET in
             "aarch64-linux-android" | "armv7-linux-androideabi" | "i686-linux-android" | "x86_64-linux-android")
-              ./android-linux-setup.sh
-              cd build
-              ./download.sh
               ./linux-build.sh $TARGET
               cd $HOME/usr/local
               zip -r $TARGET.zip $TARGET
