@@ -17,12 +17,12 @@ jobs:
               cross: true,
               artifact_name: aarch64-linux-android.zip
             }
-          # armv7 android
+          # armv7a android
           - {
               os: ubuntu-latest,
-              target: armv7-linux-androideabi,
+              target: armv7a-linux-androideabi,
               cross: true,
-              artifact_name: armv7-linux-androideabi.zip
+              artifact_name: armv7a-linux-androideabi.zip
             }
           # i686 android
           - {
@@ -65,8 +65,7 @@ jobs:
         run: |
           TARGET=${{ matrix.triple.target }}
           case $TARGET in
-            "aarch64-linux-android" | "armv7-linux-androideabi" | "i686-linux-android" | "x86_64-linux-android")
-              
+            "aarch64-linux-android" | "armv7a-linux-androideabi" | "i686-linux-android" | "x86_64-linux-android")
               cd build
               ./linux-build.sh $TARGET
               cd $HOME/usr/local
