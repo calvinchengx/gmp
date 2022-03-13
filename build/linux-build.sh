@@ -14,6 +14,11 @@ echo "NDK: $NDK"
 # export TOOLCHAIN=$NDK/toolchains/llvm/prebuilt/darwin-x86_64
 export TOOLCHAIN=$NDK/toolchains/llvm/prebuilt/linux-x86_64
 
+echo "TOOLCHAIN: $TOOLCHAIN"
+
+ls -la $TOOLCHAIN
+ls -la $TOOLCHAIN/bin
+
 # Only choose one of these, depending on your device...
 export TARGET=$1
 # export TARGET=aarch64-linux-android
