@@ -53,8 +53,8 @@ jobs:
           # x86_64 macos
           - {
               os: macos-latest,
-              target: x86_64-macos,
-              artifact_name: x86_64-macos.zip
+              target: x86_64-osx,
+              artifact_name: x86_64-osx.zip
             }
 
     steps:
