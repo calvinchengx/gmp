@@ -42,6 +42,11 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+      - name: Set up Java
+        uses: actions/setup-java@v2
+        with:
+          distribution: 'zulu' # See 'Supported distributions' for available options
+          java-version: '11'
       - name: Build project
         run: |
           TARGET=${{ matrix.triple.target }}
@@ -51,7 +56,7 @@ jobs:
               cd build
               ./download.sh
               ./linux-build.sh
-              cd usr/local
+              cd $HOME/usr/local
               zip -r $TARGET.zip $TARGET
               ;;
             *)
