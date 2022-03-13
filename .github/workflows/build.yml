@@ -69,7 +69,7 @@ jobs:
               cd build
               ./linux-build.sh $TARGET
               cd $HOME
-              zip -r /usr/local/${{ matrix.triple.artifact_name }} $TARGET
+              zip -r /tmp/${{ matrix.triple.artifact_name }} $TARGET
               ;;
             *)
               ;;
@@ -79,7 +79,7 @@ jobs:
         uses: svenstaro/upload-release-action@v1-release
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: /usr/local/${{ matrix.triple.artifact_name }}
+          file: /tmp/${{ matrix.triple.artifact_name }}
           asset_name: ${{ matrix.triple.artifact_name }}
           tag: 6.2.1
           overwrite: true
