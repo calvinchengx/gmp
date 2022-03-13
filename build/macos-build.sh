@@ -18,6 +18,10 @@ CLANGPP=`xcrun --sdk iphoneos --find clang++`
 
 BITCODE_FLAGS=" -disable-llvm-optzns -O3"
 
+mkdir -p gmp
+cd gmp
+CURRENT=`pwd`
+
 build()
 {
     case $1 in
@@ -84,9 +88,5 @@ build()
 	echo "Install in progress for ${ARCH} ${TYPE}..."
 	make install &> "${CURRENT}/gmplib-${ARCH}-${TYPE}-install.log"
 }
-
-mkdir -p gmp
-cd gmp
-CURRENT=`pwd`
 
 build
