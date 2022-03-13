@@ -68,18 +68,18 @@ jobs:
             "aarch64-linux-android" | "armv7a-linux-androideabi" | "i686-linux-android" | "x86_64-linux-android")
               cd build
               ./linux-build.sh $TARGET
-              cd $HOME/usr/local
+              cd $HOME
               zip -r $TARGET.zip $TARGET
               ;;
             *)
               ;;
           esac
-          ls -la $HOME/usr/local
+          ls -la $HOME
       - name: Upload binary to release
         uses: svenstaro/upload-release-action@v1-release
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: $HOME/usr/local/${{ matrix.triple.artifact_name }}
+          file: $HOME/${{ matrix.triple.artifact_name }}
           asset_name: ${{ matrix.triple.artifact_name }}
           tag: 6.2.1
           overwrite: true
