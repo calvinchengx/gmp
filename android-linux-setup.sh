@@ -27,8 +27,8 @@ source $HOME/.bashrc
 
 echo "ANDROID_HOME: $ANDROID_HOME"
 echo "ANDROID_SDK_ROOT: $ANDROID_SDK_ROOT"
-PATH=$PATH:$ANDROID_SDK_ROOT/cmdline-tools/latest/bin
+export PATH=$PATH:$ANDROID_SDK_ROOT/cmdline-tools/latest/bin
 echo "PATH: $PATH"
 
 yes | sdkmanager --licenses
-sdkmanager "platforms;android-21" "build-tools;21.1.2" "ndk-bundle"
+yes | sdkmanager "platforms;android-21" "build-tools;21.1.2" "ndk-bundle"
