@@ -37,11 +37,6 @@ export STRIP=$TOOLCHAIN/bin/llvm-strip
 ./configure --prefix=$HOME/usr/local/$TARGET \
 	--host=$TARGET
 make
-
-ls -la .libs
-
-ldconfig -p |grep libgmp
-
-#make install
-#make clean
-#make distclean
+make install
+make clean
+make distclean
