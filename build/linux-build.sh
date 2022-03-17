@@ -45,6 +45,8 @@ make
 
 ls -la .libs
 
+ldconfig -p |grep libgmp
+
 #make install
 #make clean
 #make distclean
