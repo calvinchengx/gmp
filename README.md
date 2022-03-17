@@ -10,3 +10,7 @@ For
 * macOS
 * iOS
 * Android
+
+Android supports 4 architectures.
+iOS supports 2 architectures.
+macOS supports 1 architecture.
