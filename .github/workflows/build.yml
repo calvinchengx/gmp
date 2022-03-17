@@ -80,15 +80,15 @@ jobs:
               ;;
             "ios")
               cd build
-              ./macos-build.sh $TARGET
+              ./macos-build.sh -$TARGET
               cd gmp
               zip -r /tmp/${{ matrix.triple.artifact_name }} gmplib gmplib-arm64-ios gmplib-x86_64-ios
               ;;
             "osx")
               cd build
-              ./macos-build.sh $TARGET
+              ./macos-build.sh -$TARGET
               cd gmp
-              zip -r /tmp/${{ matrix.triple.artifact_name }} gmplib-x86_64-osx
+              zip -r /tmp/${{ matrix.triple.artifact_name }} gmplib gmplib-x86_64-osx
               ;;
           esac
       - name: Upload binary to release
