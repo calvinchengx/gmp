@@ -38,23 +38,17 @@ jobs:
               cross: true,
               artifact_name: x86_64-linux-android.zip
             }
-          # arm64 ios
+          # ios - arm64, x86_64 and universal
           - {
               os: macos-latest,
-              target: arm64-ios,
-              artifact_name: arm64-ios.zip
+              target: ios,
+              artifact_name: ios-all.zip
             }
-          # x86_64 ios
+          # macos
           - {
               os: macos-latest,
-              target: x86_64-ios,
-              artifact_name: x86_64-ios.zip
-            }
-          # x86_64 macos
-          - {
-              os: macos-latest,
-              target: x86_64-osx,
-              artifact_name: x86_64-osx.zip
+              target: osx,
+              artifact_name: osx-all.zip
             }
 
     steps:
@@ -74,23 +68,27 @@ jobs:
         uses: maxim-lobanov/setup-xcode@v1
         with:
           xcode-version: '13.0'
-      - name: Download gmp
-        run: cd build && ./download.sh
-      - name: Build
+      - name: Download gmp and build
         run: |
           TARGET=${{ matrix.triple.target }}
           case $TARGET in
             "aarch64-linux-android" | "armv7a-linux-androideabi" | "i686-linux-android" | "x86_64-linux-android")
-              cd build
+              cd build && ./download.sh
               ./linux-build.sh $TARGET
               cd $HOME/usr/local
               zip -r /tmp/${{ matrix.triple.artifact_name }} $TARGET
               ;;
-            *)
+            "ios")
               cd build
               ./macos-build.sh $TARGET
               cd gmp
-              zip -r /tmp/${{ matrix.triple.artifact_name }} gmplib-$TARGET
+              zip -r /tmp/${{ matrix.triple.artifact_name }} gmplib gmplib-arm64-ios gmplib-x86_64-ios
+              ;;
+            "osx")
+              cd build
+              ./macos-build.sh $TARGET
+              cd gmp
+              zip -r /tmp/${{ matrix.triple.artifact_name }} gmplib-x86_64-osx
               ;;
           esac
       - name: Upload binary to release
