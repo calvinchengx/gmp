@@ -83,9 +83,7 @@ jobs:
             "aarch64-linux-android" | "armv7a-linux-androideabi" | "i686-linux-android" | "x86_64-linux-android")
               cd build
               ./linux-build.sh $TARGET
-              sudo apt install tree
-              tree $HOME/usr/local/$TARGET
-              #zip -r /tmp/${{ matrix.triple.artifact_name }} $HOME/usr/local/$TARGET
+              zip -r /tmp/${{ matrix.triple.artifact_name }} $HOME/usr/local/$TARGET
               ;;
             *)
               cd build
@@ -94,11 +92,11 @@ jobs:
               zip -r /tmp/${{ matrix.triple.artifact_name }} gmplib-$TARGET
               ;;
           esac
-      # - name: Upload binary to release
-      #   uses: svenstaro/upload-release-action@v1-release
-      #   with:
-      #     repo_token: ${{ secrets.GITHUB_TOKEN }}
-      #     file: /tmp/${{ matrix.triple.artifact_name }}
-      #     asset_name: ${{ matrix.triple.artifact_name }}
-      #     tag: 6.2.1
-      #     overwrite: true
+      - name: Upload binary to release
+        uses: svenstaro/upload-release-action@v1-release
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: /tmp/${{ matrix.triple.artifact_name }}
+          asset_name: ${{ matrix.triple.artifact_name }}
+          tag: 6.2.1
+          overwrite: true
