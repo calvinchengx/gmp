@@ -94,11 +94,11 @@ jobs:
               zip -r /tmp/${{ matrix.triple.artifact_name }} gmplib-$TARGET
               ;;
           esac
-      - name: Upload binary to release
-        uses: svenstaro/upload-release-action@v1-release
-        with:
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: /tmp/${{ matrix.triple.artifact_name }}
-          asset_name: ${{ matrix.triple.artifact_name }}
-          tag: 6.2.1
-          overwrite: true
+      # - name: Upload binary to release
+      #   uses: svenstaro/upload-release-action@v1-release
+      #   with:
+      #     repo_token: ${{ secrets.GITHUB_TOKEN }}
+      #     file: /tmp/${{ matrix.triple.artifact_name }}
+      #     asset_name: ${{ matrix.triple.artifact_name }}
+      #     tag: 6.2.1
+      #     overwrite: true

@@ -15,9 +15,6 @@ export TOOLCHAIN=$NDK/toolchains/llvm/prebuilt/linux-x86_64
 
 echo "TOOLCHAIN: $TOOLCHAIN"
 
-ls -la $TOOLCHAIN
-ls -la $TOOLCHAIN/bin
-
 # Only choose one of these, depending on your device...
 export TARGET=$1
 # export TARGET=aarch64-linux-android
@@ -38,8 +35,6 @@ export RANLIB=$TOOLCHAIN/bin/llvm-ranlib
 export STRIP=$TOOLCHAIN/bin/llvm-strip
 
 ./configure --prefix=$HOME/usr/local/$TARGET \
-	--enable-static \
-	--enable-shared \
 	--host=$TARGET
 make
 
