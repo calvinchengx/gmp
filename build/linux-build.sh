@@ -42,6 +42,9 @@ export STRIP=$TOOLCHAIN/bin/llvm-strip
 	--enable-shared \
 	--host=$TARGET
 make
-make install
+
+ls -la .libs
+
+#make install
 #make clean
 #make distclean
