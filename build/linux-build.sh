@@ -6,12 +6,12 @@ cd gmp
 CURRENT=`pwd`
 
 echo "ANDROID_SDK_ROOT: $ANDROID_SDK_ROOT"
-export NDK=$ANDROID_SDK_ROOT/ndk-bundle
-echo "NDK: $NDK"
+export ANDROID_NDK_HOME="$ANDROID_SDK_ROOT/ndk/22.1.7171670"
+echo "ANDROID_NDK_HOME: $ANDROID_NDK_HOME"
 
 # Only choose one of these, depending on your build machine...
-# export TOOLCHAIN=$NDK/toolchains/llvm/prebuilt/darwin-x86_64
-export TOOLCHAIN=$NDK/toolchains/llvm/prebuilt/linux-x86_64
+# export TOOLCHAIN=$ANDROID_NDK_HOME/toolchains/llvm/prebuilt/darwin-x86_64
+export TOOLCHAIN=$ANDROID_NDK_HOME/toolchains/llvm/prebuilt/linux-x86_64
 
 echo "TOOLCHAIN: $TOOLCHAIN"
 

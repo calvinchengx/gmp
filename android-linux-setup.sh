@@ -31,4 +31,5 @@ export PATH=$PATH:$ANDROID_SDK_ROOT/cmdline-tools/latest/bin
 echo "PATH: $PATH"
 
 yes | sdkmanager --licenses
-yes | sdkmanager "platforms;android-21" "build-tools;21.1.2" "ndk-bundle"
+# yes | sdkmanager "platforms;android-21" "build-tools;21.1.2" "ndk-bundle"
+yes | sdkmanager "platforms;android-21" "build-tools;21.1.2" "ndk;22.1.7171670"
