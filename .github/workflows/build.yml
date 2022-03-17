@@ -84,8 +84,8 @@ jobs:
               cd build
               ./linux-build.sh $TARGET
               sudo apt install tree
-              tree $HOME/$TARGET
-              zip -r /tmp/${{ matrix.triple.artifact_name }} $HOME/$TARGET
+              tree $HOME/usr/local/$TARGET
+              zip -r /tmp/${{ matrix.triple.artifact_name }} $HOME/usr/local/$TARGET
               ;;
             *)
               cd build

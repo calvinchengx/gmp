@@ -2,7 +2,6 @@
 
 sudo apt install libgmp-dev m4 build-essential --yes
 
-mkdir -p gmp
 cd gmp
 CURRENT=`pwd`
 
@@ -38,7 +37,7 @@ export LD=$TOOLCHAIN/bin/ld
 export RANLIB=$TOOLCHAIN/bin/llvm-ranlib
 export STRIP=$TOOLCHAIN/bin/llvm-strip
 
-./configure --prefix=$HOME/$TARGET --host=$TARGET
+./configure --prefix=$HOME/usr/local/$TARGET --host=$TARGET
 make
 make install
 #make clean
