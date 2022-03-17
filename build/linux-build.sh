@@ -41,5 +41,5 @@ export STRIP=$TOOLCHAIN/bin/llvm-strip
 ./configure --prefix=$HOME/$TARGET --host=$TARGET
 make
 make install
-make clean
-make distclean
+#make clean
+#make distclean
